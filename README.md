@@ -108,6 +108,10 @@ The `data` field is sanitized before export.
 
 - OpenClaw `>= 2026.5.0` (peer dependency).
 
+## Publicação (mantenedores)
+
+Ver [docs/publicacao.md](docs/publicacao.md).
+
 ## License
 
 MIT — see [LICENSE](./LICENSE).

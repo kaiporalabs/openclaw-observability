@@ -11,6 +11,17 @@
   "bugs": {
     "url": "https://github.com/kaiporalabs/openclaw-observability/issues"
   },
+  "files": [
+    "index.ts",
+    "src",
+    "docs",
+    "openclaw.plugin.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "openclaw",
     "plugin",
