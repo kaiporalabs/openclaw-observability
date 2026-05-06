@@ -1,0 +1,44 @@
+{
+  "name": "@kaiporalabs/openclaw-observability",
+  "version": "1.0.0",
+  "description": "Vendor-agnostic OpenClaw observability plugin with configurable file (NDJSON) and webhook exporters",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaiporalabs/openclaw-observability.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kaiporalabs/openclaw-observability/issues"
+  },
+  "keywords": [
+    "openclaw",
+    "plugin",
+    "observability",
+    "metrics",
+    "tracing",
+    "webhook",
+    "logging"
+  ],
+  "peerDependencies": {
+    "openclaw": ">=2026.5.0"
+  },
+  "devDependencies": {
+    "openclaw": "2026.5.2",
+    "typescript": "~5.9.0"
+  },
+  "openclaw": {
+    "extensions": ["./index.ts"],
+    "compat": {
+      "pluginApi": ">=2026.5.2"
+    },
+    "install": {
+      "npmSpec": "@kaiporalabs/openclaw-observability",
+      "defaultChoice": "npm",
+      "minHostVersion": ">=2026.5.0"
+    }
+  },
+  "scripts": {
+    "check": "tsc --noEmit"
+  }
+}

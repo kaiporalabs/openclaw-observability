@@ -1,0 +1,143 @@
+{
+  "id": "openclaw-observability",
+  "name": "OpenClaw Observability",
+  "description": "Structured agent/tool/model observations via NDJSON file and HTTP webhook exporters",
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "hooks": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "beforeToolCall": {
+            "type": "boolean",
+            "default": true,
+            "description": "Emit when a tool call is about to run"
+          },
+          "afterToolCall": {
+            "type": "boolean",
+            "default": true,
+            "description": "Emit after tool completes (duration, result or error)"
+          },
+          "modelCallStarted": {
+            "type": "boolean",
+            "default": true,
+            "description": "Emit when a provider model call begins"
+          },
+          "modelCallEnded": {
+            "type": "boolean",
+            "default": true,
+            "description": "Emit when a provider model call ends (timing and outcome)"
+          },
+          "agentEnd": {
+            "type": "boolean",
+            "default": false,
+            "description": "Emit when an agent run ends (may include large message summaries)"
+          },
+          "sessionStart": {
+            "type": "boolean",
+            "default": false,
+            "description": "Emit on session start"
+          },
+          "sessionEnd": {
+            "type": "boolean",
+            "default": false,
+            "description": "Emit on session end"
+          }
+        }
+      },
+      "sanitization": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "maxDepth": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 32,
+            "default": 8
+          },
+          "maxStringLength": {
+            "type": "integer",
+            "minimum": 64,
+            "default": 8192
+          },
+          "maxArrayLength": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 64
+          },
+          "redactKeys": {
+            "type": "array",
+            "items": { "type": "string" },
+            "default": [
+              "password",
+              "token",
+              "authorization",
+              "apiKey",
+              "api_key",
+              "secret",
+              "cookie",
+              "set-cookie"
+            ]
+          }
+        }
+      },
+      "exporters": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": false,
+                "description": "Append one JSON object per line (NDJSON)"
+              },
+              "path": {
+                "type": "string",
+                "description": "Absolute or user-relative path to the log file"
+              },
+              "mkdir": {
+                "type": "boolean",
+                "default": true,
+                "description": "Create parent directories if missing"
+              }
+            }
+          },
+          "webhook": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "default": false,
+                "description": "POST each observation as JSON"
+              },
+              "url": {
+                "type": "string",
+                "description": "HTTPS endpoint receiving application/json"
+              },
+              "headers": {
+                "type": "object",
+                "additionalProperties": { "type": "string" },
+                "description": "Extra headers (e.g. Authorization)"
+              },
+              "timeoutMs": {
+                "type": "integer",
+                "minimum": 500,
+                "maximum": 120000,
+                "default": 15000
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
