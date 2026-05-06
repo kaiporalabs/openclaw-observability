@@ -10,57 +10,75 @@ Vendor-agnostic OpenClaw plugin that emits **structured observation events** for
 
 ## Install
 
-```bash
-openclaw plugins install @kaiporalabs/openclaw-observability
-```
+1. **Pacote publicado no npm** (quando `@kaiporalabs/openclaw-observability` estiver no registry):
 
-Or add the package to your OpenClaw environment and enable it in config.
+   ```bash
+   openclaw plugins install @kaiporalabs/openclaw-observability
+   ```
+
+2. **ClawHub** (se publicar o pacote no ClawHub):
+
+   ```bash
+   openclaw plugins install clawhub:@kaiporalabs/openclaw-observability
+   ```
+
+3. **Desenvolvimento local**: instale a dependência no mesmo ambiente Node do OpenClaw (por exemplo `npm install` / `pnpm add` no projeto que empacota o gateway) e referencie o plugin pela entrada em `plugins.entries`, ou use o fluxo de plugins por caminho que o seu `openclaw` suportar.
+
+Depois da instalação, **ative o plugin** em `plugins.entries.<id>` e reinicie o gateway se necessário para carregar o novo pacote.
+
+Versão do host: OpenClaw **≥ 2026.5.0** (ver `peerDependencies` em `package.json`).
 
 ## Configuration
 
 Enable at least **one** exporter with a valid `path` or `url`.
 
-Example (`plugins.entries` style — exact shape follows your OpenClaw config):
+No arquivo de configuração do OpenClaw, a forma correta é sob **`plugins.entries`** (o id deve coincidir com o do manifest, `openclaw-observability`):
 
 ```json
 {
-  "openclaw-observability": {
-    "enabled": true,
-    "config": {
-      "hooks": {
-        "beforeToolCall": true,
-        "afterToolCall": true,
-        "modelCallStarted": true,
-        "modelCallEnded": true,
-        "agentEnd": false,
-        "sessionStart": false,
-        "sessionEnd": false
-      },
-      "sanitization": {
-        "maxDepth": 8,
-        "maxStringLength": 8192,
-        "maxArrayLength": 64,
-        "redactKeys": ["password", "token", "authorization", "apiKey", "secret"]
-      },
-      "exporters": {
-        "file": {
-          "enabled": true,
-          "path": "${OPENCLAW_STATE_DIR}/observability.ndjson",
-          "mkdir": true
-        },
-        "webhook": {
-          "enabled": true,
-          "url": "https://example.com/openclaw-observability",
-          "headers": {
-            "Authorization": "Bearer …"
+  "plugins": {
+    "entries": {
+      "openclaw-observability": {
+        "enabled": true,
+        "config": {
+          "hooks": {
+            "beforeToolCall": true,
+            "afterToolCall": true,
+            "modelCallStarted": true,
+            "modelCallEnded": true,
+            "agentEnd": false,
+            "sessionStart": false,
+            "sessionEnd": false
           },
-          "timeoutMs": 15000
+          "sanitization": {
+            "maxDepth": 8,
+            "maxStringLength": 8192,
+            "maxArrayLength": 64,
+            "redactKeys": ["password", "token", "authorization", "apiKey", "secret"]
+          },
+          "exporters": {
+            "file": {
+              "enabled": true,
+              "path": "/absolute/path/to/observability.ndjson",
+              "mkdir": true
+            },
+            "webhook": {
+              "enabled": true,
+              "url": "https://example.com/openclaw-observability",
+              "headers": {
+                "Authorization": "Bearer …"
+              },
+              "timeoutMs": 15000
+            }
+          }
         }
       }
     }
   }
 }
 ```
+
+Use um **caminho absoluto** para `exporters.file.path` (ou o que o seu deploy documentar). Não assuma que `${OPENCLAW_STATE_DIR}` em JSON será expandido — confira na [referência de configuração do OpenClaw](https://docs.openclaw.ai/gateway/configuration-reference) se substituição de variáveis se aplica ao campo que você usar.
 
 ## Event envelope
 
