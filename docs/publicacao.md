@@ -20,7 +20,7 @@ Este pacote é [**escopado**](https://docs.npmjs.com/about-scopes) (`@kaiporalab
   npm pack --dry-run
   ```
 
-  Confira se entram `index.ts`, `src/`, `openclaw.plugin.json`, `README.md`, `LICENSE`.
+  Confira se entram `dist/` (JavaScript compilado), `openclaw.plugin.json`, `README.md`, `LICENSE`.
 
 ## Login no npm (uma vez por máquina)
 

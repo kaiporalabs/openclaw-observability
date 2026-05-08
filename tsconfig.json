@@ -5,9 +5,11 @@
     "moduleResolution": "NodeNext",
     "strict": true,
     "skipLibCheck": true,
-    "noEmit": true,
     "verbatimModuleSyntax": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "outDir": "dist",
+    "declaration": false
   },
   "include": ["index.ts", "src/**/*.ts"]
 }

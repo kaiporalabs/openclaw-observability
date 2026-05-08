@@ -4,6 +4,16 @@ Todas as alterações notáveis neste projeto serão documentadas aqui.
 
 O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
+## [1.1.2] - 2026-05-07
+
+### Corrigido
+
+- Pacote publicado com **runtime JavaScript**: `npm run build` gera `dist/`; `openclaw.extensions` aponta para `./dist/index.js`. O instalador OpenClaw exige entrada compilada (não apenas `.ts`).
+
+### Alterado
+
+- `files` do npm inclui `dist/` em vez de fontes TypeScript; `prepublishOnly` executa o build automaticamente.
+
 ## [1.1.1] - 2026-05-06
 
 ### Adicionado
@@ -26,6 +36,7 @@ O formato segue [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/), e e
 
 - Lançamento inicial: hooks configuráveis, exportadores ficheiro (NDJSON) e webhook, sanitização de dados.
 
+[1.1.2]: https://github.com/kaiporalabs/openclaw-observability/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/kaiporalabs/openclaw-observability/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/kaiporalabs/openclaw-observability/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/kaiporalabs/openclaw-observability/releases/tag/v1.0.0
