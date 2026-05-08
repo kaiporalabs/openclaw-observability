@@ -1,5 +1,5 @@
 import { definePluginEntry } from "openclaw/plugin-sdk/plugin-entry";
-import { registerObservability } from "./src/register-hooks.js";
+import { registerObservability } from "./register-hooks.js";
 
 export default definePluginEntry({
   id: "kaiporalabs-observability",
