@@ -1,6 +1,6 @@
 {
   "name": "@kaiporalabs/openclaw-observability",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Vendor-agnostic OpenClaw observability plugin with configurable file (NDJSON) and webhook exporters",
   "type": "module",
   "license": "MIT",
@@ -42,7 +42,12 @@
   "openclaw": {
     "extensions": ["./index.ts"],
     "compat": {
-      "pluginApi": ">=2026.5.2"
+      "pluginApi": ">=2026.5.2",
+      "minGatewayVersion": "2026.5.2"
+    },
+    "build": {
+      "openclawVersion": "2026.5.2",
+      "pluginSdkVersion": "2026.5.2"
     },
     "install": {
       "npmSpec": "@kaiporalabs/openclaw-observability",
