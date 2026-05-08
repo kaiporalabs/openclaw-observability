@@ -34,7 +34,7 @@ export function createFileExporter(params: {
         const line = `${JSON.stringify(envelope)}\n`;
         await fs.appendFile(resolvedPath, line, "utf8");
       } catch (err) {
-        warn(`openclaw-observability file exporter: ${String(err)}`);
+        warn(`kaiporalabs-observability file exporter: ${String(err)}`);
       }
     },
   };

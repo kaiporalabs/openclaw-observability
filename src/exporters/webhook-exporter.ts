@@ -31,11 +31,11 @@ export function createWebhookExporter(params: {
         });
         if (!res.ok) {
           warn(
-            `openclaw-observability webhook exporter: HTTP ${res.status} ${res.statusText} url=${url}`,
+            `kaiporalabs-observability webhook exporter: HTTP ${res.status} ${res.statusText} url=${url}`,
           );
         }
       } catch (err) {
-        warn(`openclaw-observability webhook exporter: ${String(err)}`);
+        warn(`kaiporalabs-observability webhook exporter: ${String(err)}`);
       } finally {
         clearTimeout(timer);
       }

@@ -148,7 +148,7 @@ export function validateExporterConfig(cfg: ObservabilityPluginConfig): string |
     (cfg.exporters.file.enabled && Boolean(cfg.exporters.file.path)) ||
     (cfg.exporters.webhook.enabled && Boolean(cfg.exporters.webhook.url));
   if (!anyEnabled) {
-    return "openclaw-observability: enable at least one exporter (file.path or webhook.url).";
+    return "kaiporalabs-observability: enable at least one exporter (file.path or webhook.url).";
   }
   return null;
 }

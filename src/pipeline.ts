@@ -34,7 +34,7 @@ export function createObservationPipeline(
         data: sanitizedData,
       });
       void emitOne(envelope).catch((err) => {
-        api.logger.warn(`openclaw-observability pipeline: ${String(err)}`);
+        api.logger.warn(`kaiporalabs-observability pipeline: ${String(err)}`);
       });
     },
   };

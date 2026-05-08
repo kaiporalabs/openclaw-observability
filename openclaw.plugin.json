@@ -1,6 +1,6 @@
 {
-  "id": "openclaw-observability",
-  "name": "OpenClaw Observability",
+  "id": "kaiporalabs-observability",
+  "name": "KaiporaLabs OpenClaw Observability",
   "description": "Structured agent/tool/model observations via NDJSON file and HTTP webhook exporters",
   "activation": {
     "onStartup": true

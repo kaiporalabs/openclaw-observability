@@ -32,13 +32,13 @@ Versão do host: OpenClaw **≥ 2026.5.0** (ver `peerDependencies` em `package.j
 
 Enable at least **one** exporter with a valid `path` or `url`.
 
-No arquivo de configuração do OpenClaw, a forma correta é sob **`plugins.entries`** (o id deve coincidir com o do manifest, `openclaw-observability`):
+No arquivo de configuração do OpenClaw, a forma correta é sob **`plugins.entries`** (o id deve coincidir com o do manifest, `kaiporalabs-observability`):
 
 ```json
 {
   "plugins": {
     "entries": {
-      "openclaw-observability": {
+      "kaiporalabs-observability": {
         "enabled": true,
         "config": {
           "hooks": {
@@ -64,7 +64,7 @@ No arquivo de configuração do OpenClaw, a forma correta é sob **`plugins.entr
             },
             "webhook": {
               "enabled": true,
-              "url": "https://example.com/openclaw-observability",
+              "url": "https://example.com/kaiporalabs-observability",
               "headers": {
                 "Authorization": "Bearer …"
               },
@@ -87,7 +87,7 @@ Each line (file) or HTTP body (webhook) is one JSON object:
 ```json
 {
   "schema": "openclaw.observability/v1",
-  "pluginId": "openclaw-observability",
+  "pluginId": "kaiporalabs-observability",
   "emittedAt": "2026-05-06T12:00:00.000Z",
   "hook": "after_tool_call",
   "correlation": {
